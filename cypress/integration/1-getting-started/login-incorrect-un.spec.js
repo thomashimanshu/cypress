@@ -1,0 +1,20 @@
+/// <reference types="cypress" />
+require('cypress-xpath')
+context('Window', () => {
+    beforeEach(() => {
+      cy.visit('https://staging-app.virtualcombine.com/')
+    })
+    it('Click on Sign IN', () => {
+        //Clicking on Sign in button
+        cy.get('.welcome-btn').click()
+    
+//Entering the incorrect username and passowrd
+
+        cy.xpath('//*[@id="forms.login.username"]').type("thomas.himanshu+1@ithands.biz");
+        cy.xpath('//*[@id="forms.login.password"]').type('Rubi@123');
+        cy.get('.welcome-btn').click();
+        cy.xpath('//*[@id="root"]/div/div[4]/div[2]/div[5]/div[2]/div/form/div[3]/div').contains('Your email or password was entered incorrectly.');
+        cy.get('.welcome-btn').click();
+      })
+})
+  
